@@ -25,13 +25,13 @@ const text = 'Hello World!'
 app.get('/notify', (req, res) => {
      vonage.message.sendSms(from, to, text, (err, responseData) => {
         if (err) {
-             res.status(200).json([{ status: "error" }])
+             res.status(417).json([{ status: "error" }])
         } else {
             if(responseData.messages[0]['status'] === "0") {
                  res.status(200).json([{ status: "success" }])
              } else {
                  ///console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-                 res.status(200).json([{ status: "error" }])
+                 res.status(417).json([{ status: "error" }])
              }
          }
      })
